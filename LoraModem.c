@@ -23,7 +23,7 @@
 #include "LoraModem.h"
 
 uint16_t bw = 125;
-int debug = 1;
+int debug = 3;
 std::vector<Server_t> servers;
 struct sockaddr_in si_other;
 SpreadingFactor_t sf = SF7;
@@ -538,10 +538,10 @@ void initLoraModem(byte CE)
         sx1272 = true;
     } else {
         // sx1276?
-        //digitalWrite(RST, LOW);
-        //delay(100);
-        //digitalWrite(RST, HIGH);
-        //delay(100);
+        digitalWrite(RST, LOW);
+        delay(100);
+        digitalWrite(RST, HIGH);
+        delay(100);
         version = ReadRegister(REG_VERSION, CE);
         if (version == 0x12) {
             // sx1276
